@@ -363,7 +363,7 @@ body {
 }
 
 .modal__dialog {
-    max-width: 39.7vmax;
+    max-width: 32vmax;
     margin: 40px auto;
 }
 
@@ -401,7 +401,7 @@ body {
 .modal__input {
     display: block;
     margin: 0 auto;
-    width: 22.2vmax;
+    width: 22.2vw;
     height: 4.25vh;
     background: #eee;
     border: none;
@@ -451,7 +451,7 @@ body {
     transition: 0.28s;
     overflow: hidden;
     color: red;
-    font-size: 1.27vmax;
+    font-size: 1.27vw;
     font-style: italic;
 }
 

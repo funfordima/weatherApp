@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Weather App</title>
+</head>
+
+<body>
+
+    <header class="header main_flex">
+        <div class="header__block wrap main_flex__nowrap flex__jcontent_between flex__align-items_center">
+            <div class="header__logo">
+                <img src="img/weather.png" alt="Логотип">
+            </div>
+            <h1 class="header__title">Sky Weather Andersen Team</h1>
+            <div class="header__search">
+                <input id="input" type="text" placeholder="search for a place">
+                <svg id="search" enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <g>
+                        <path
+                            d="m324.195 282.327-41.868 41.868c-4.057 4.057-10.634 4.057-14.691 0l-26.59-26.59 56.56-56.56 26.59 26.59c4.056 4.057 4.056 10.635-.001 14.692z"
+                            fill="#2b4d66" />
+                        <path d="m296.232 296.232h47.993v47.993h-47.993z" fill="#4a80aa"
+                            transform="matrix(.707 -.707 .707 .707 -132.643 320.229)" />
+                        <path
+                            d="m508.957 467.089-41.868 41.868c-4.057 4.057-10.634 4.057-14.691 0l-136.136-136.135c-4.057-4.057-4.057-10.634 0-14.691l41.868-41.868c4.057-4.057 10.634-4.057 14.691 0l136.135 136.135c4.058 4.056 4.058 10.634.001 14.691z"
+                            fill="#407093" />
+                        <path
+                            d="m508.957 467.089-11.508 11.508-150.826-150.827 11.508-11.508c4.057-4.057 10.634-4.057 14.691 0l136.135 136.135c4.057 4.057 4.057 10.635 0 14.692z"
+                            fill="#365e7d" />
+                        <circle cx="159.976" cy="159.976" fill="#407093" r="159.976" />
+                        <path
+                            d="m256.72 32.57c20.433 26.867 32.57 60.386 32.57 96.744 0 88.352-71.624 159.976-159.976 159.976-36.358 0-69.877-12.137-96.744-32.57 29.22 38.421 75.412 63.232 127.406 63.232 88.352 0 159.976-71.624 159.976-159.976-.001-51.994-24.812-98.187-63.232-127.406z"
+                            fill="#365e7d" />
+                        <circle cx="159.976" cy="159.976" fill="#e4f6ff" r="117.315" />
+                        <path
+                            d="m230.821 66.467c14.938 19.685 23.807 44.228 23.807 70.845 0 64.792-52.524 117.315-117.315 117.315-26.617 0-51.16-8.87-70.845-23.807 21.423 28.233 55.334 46.47 93.508 46.47 64.792 0 117.315-52.524 117.315-117.315 0-38.174-18.238-72.084-46.47-93.508z"
+                            fill="#d3effb" />
+                    </g>
+                </svg>
+            </div>
+            <div class="header__btn">
+                <button data-modal class="btn">Sign In</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="sidepanel main_flex flex__jcontent_between flex__align-items_center">
+        <div class="sidepanel__text"><span class="main_flex">Social network</span></div>
+        <div class="sidepanel__divider"></div>
+        <a href="https://t.me/andersen_js" class="sidepanel__icon" target="_blank">
+            <img src="img/telegram.svg" alt="instagram">
+        </a>
+        <a href="https://www.facebook.com/Andersensoft/" class="sidepanel__icon" target='_blank'>
+            <img src="img/facebook.svg" alt="facebook">
+        </a>
+    </div>
+
+    <main id="main" class="main_flex__wrap">
+        <section class="wrap main_flex__wrap flex__align-items_center">
+            <h1 class="main_section__title main_flex flex__jcontent_center">
+                Weather <b>Forecast</b>
+            </h1>
+            <div class="photo main_flex__nowrap flex__jcontent_between flex__align-items_center">
+                <figure>
+                    <p><img class="polotsk" src="img/Polotsk.jpg" alt="Polotsk"></p>
+                    <figcaption>Polotsk, Belarus</figcaption>
+                </figure>
+
+                <figure>
+                    <p><img class="kharkov" src="img/Kharkov.jpg" alt="Kharkov"></p>
+                    <figcaption>Kharkov, Ukraine</figcaption>
+                </figure>
+
+                <figure>
+                    <p><img class="penza" src="img/Penza.jpg" alt="Penza"></p>
+                    <figcaption>Penza, Russia</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section class="wrap">
+            <div class="container">
+                <nav class="tabheader">
+                    <ul class="tabheader__items main_flex__nowrap flex__jcontent_between">
+                        <li data-off='1'
+                            class="tabheader__item main_flex flex__jcontent_center flex__align-items_center">
+                            <p data-off='1'>Today</p>
+                        </li>
+                        <li data-off=''
+                            class="tabheader__item main_flex flex__jcontent_center flex__align-items_center user_rights">
+                            <p data-off=''>Week</p>
+                        </li>
+                        <li data-off=''
+                            class="tabheader__item main_flex flex__jcontent_center flex__align-items_center user_rights">
+                            <p data-off=''>2 Weeks</p>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="wrap main_flex">
+                    <div class="tabcontent main_flex flex__align-items_center flex__jcontent_start">
+                        <table class='table'>
+                            <thead class='table__head'>
+                                <tr>
+                                    <th colspan='9' class="th__height"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table__body">
+                                <tr>
+                                    <td class="first">Current time</td>
+                                    <td class="second night">00</td>
+                                    <td class="third night">03</td>
+                                    <td class="fourth night">06</td>
+                                    <td class="fifth">09</td>
+                                    <td class="sixth">12</td>
+                                    <td class="seventh">15</td>
+                                    <td class="eighth">18</td>
+                                    <td class="ninth night">21</td>
+                                </tr>
+                                <tr>
+                                    <td class="first">Cloudiness, %</td>
+                                    <td class="second night"></td>
+                                    <td class="third night"></td>
+                                    <td class="fourth night"></td>
+                                    <td class="fifth"></td>
+                                    <td class="sixth"></td>
+                                    <td class="seventh"></td>
+                                    <td class="eighth"></td>
+                                    <td class="ninth night"></td>
+                                </tr>
+                                <tr>
+                                    <td class="first">Average visibility, metres</td>
+                                    <td class="second night"></td>
+                                    <td class="third night"></td>
+                                    <td class="fourth night"></td>
+                                    <td class="fifth"></td>
+                                    <td class="sixth"></td>
+                                    <td class="seventh"></td>
+                                    <td class="eighth"></td>
+                                    <td class="ninth night"></td>
+                                </tr>
+                                <tr class="hot">
+                                    <td class="first">Temperature, °C</td>
+                                    <td class="second night"></td>
+                                    <td class="third night"></td>
+                                    <td class="fourth night"></td>
+                                    <td class="fifth"></td>
+                                    <td class="sixth"></td>
+                                    <td class="seventh"></td>
+                                    <td class="eighth"></td>
+                                    <td class="ninth night"></td>
+                                </tr>
+                                <tr class="hot">
+                                    <td class="first">Feels like, °C</td>
+                                    <td class="second night"></td>
+                                    <td class="third night"></td>
+                                    <td class="fourth night"></td>
+                                    <td class="fifth"></td>
+                                    <td class="sixth"></td>
+                                    <td class="seventh"></td>
+                                    <td class="eighth"></td>
+                                    <td class="ninth night"></td>
+                                </tr>
+                                <tr class="hot">
+                                    <td class="first">Pressure</td>
+                                    <td class="second night"></td>
+                                    <td class="third night"></td>
+                                    <td class="fourth night"></td>
+                                    <td class="fifth"></td>
+                                    <td class="sixth"></td>
+                                    <td class="seventh"></td>
+                                    <td class="eighth"></td>
+                                    <td class="ninth night"></td>
+                                </tr>
+                                <tr>
+                                    <td class="first">Wind: speed , m/s</td>
+                                    <td class="second night"></td>
+                                    <td class="third night"></td>
+                                    <td class="fourth night"></td>
+                                    <td class="fifth"></td>
+                                    <td class="sixth"></td>
+                                    <td class="seventh"></td>
+                                    <td class="eighth"></td>
+                                    <td class="ninth night"></td>
+                                </tr>
+                                <tr>
+                                    <td class="first">Wind direction</td>
+                                    <td class="second night"></td>
+                                    <td class="third night"></td>
+                                    <td class="fourth night"></td>
+                                    <td class="fifth"></td>
+                                    <td class="sixth"></td>
+                                    <td class="seventh"></td>
+                                    <td class="eighth"></td>
+                                    <td class="ninth night"></td>
+                                </tr>
+                                <tr>
+                                    <td class="first">Humidity, %</td>
+                                    <td class="second night"></td>
+                                    <td class="third night"></td>
+                                    <td class="fourth night"></td>
+                                    <td class="fifth"></td>
+                                    <td class="sixth"></td>
+                                    <td class="seventh"></td>
+                                    <td class="eighth"></td>
+                                    <td class="ninth night"></td>
+                                </tr>
+                                <tr>
+                                    <td class="first">Weather icon</td>
+                                    <td class="second"></td>
+                                    <td class="third"></td>
+                                    <td class="fourth"></td>
+                                    <td class="fifth"></td>
+                                    <td class="sixth"></td>
+                                    <td class="seventh"></td>
+                                    <td class="eighth"></td>
+                                    <td class="ninth"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tabcontent main_flex flex__align-items_center flex__jcontent_start">
+                        <table class="table">
+                            <thead class="table__head">
+                                <tr>
+
+                                    <th colspan="9" class="th__height"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table__body week__forecast">
+                                <tr>
+                                    <td>Date</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Cloudiness, %</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Average visibility, metres</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="hot">
+                                    <td>Temperature, °C</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="hot">
+                                    <td>Feels like, °C</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="hot">
+                                    <td>Pressure</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Wind: speed , m/s</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Wind direction</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Humidity, %</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Sun rise - set</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Weather icon</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tabcontent main_flex flex__align-items_center flex__jcontent_start">
+                        <table class="table">
+                            <thead class="table__head">
+                                <tr>
+                                    <th colspan='15' class="th__height"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table__body two__weeks__forecast">
+                                <tr>
+                                    <td>Date</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Cloudiness, %</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Average visibility, metres</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="hot">
+                                    <td>Temperature, °C</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="hot">
+                                    <td>Feels like, °C</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr class="hot">
+                                    <td>Pressure</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Wind: speed , m/s</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Wind direction</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Humidity, %</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Sun rise - set</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="wrap main_flex flex__align-items_center flex__jcontent_between">
+            <div class="social">
+                <div class="subtitle">We are in social networks:</div>
+                <a href="https://t.me/andersen_js" class="link" target="_blank">telegram</a>
+                <a href="https://www.facebook.com/Andersensoft/" class="link" target="_blank">facebook</a>
+            </div>
+            <div class="pepper">
+                <img src="img/veg.svg" alt="pepper">
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <form action="#">
+                    <div data-close class="modal__close">&times;</div>
+                    <div class="modal__title">Sign In as soon as possible!</div>
+                    <div class='modal__container'>
+                        <input required type="email" id="email" name="email" class='modal__input' placeholder=" ">
+                        <label for="email">Email address</label>
+                        <div class="requirements">
+                            Must be a valid email address.
+                        </div>
+                    </div>
+                    <div class='modal__container'>
+                        <input required type="password" id="password" name="password" class='modal__input'
+                            placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+                        <label for="password">Password</label>
+                        <div class="requirements">
+                            Must be a 6 symbols, contain A-Z a-z 0-9.
+                        </div>
+                    </div>
+                    <button class="btnReg">Log In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

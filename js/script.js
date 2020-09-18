@@ -393,7 +393,7 @@ window.addEventListener('DOMContentLoaded', () => {
     async function printTwoWeeks() {
         const API_KEY_Alex = "15138addb6d24cb58360212400bc16fe";
 
-        let response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${localStorage.getItem('city')}&key=${API_KEY_Alex}`);
+        const response = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?city=${localStorage.getItem('city')}&key=${API_KEY_Alex}`);
         if (response.ok) {
             const json = await response.json();
             for (let i = 0; i <= 10; i++) {
